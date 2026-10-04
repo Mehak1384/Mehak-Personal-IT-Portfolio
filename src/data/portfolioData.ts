@@ -391,6 +391,81 @@ class LabReportParameter:
             "status": self.evaluate_status()
         }`
       }
+    },
+    {
+      id: 'github-username-finder',
+      name: 'GitHub Username Finder & Redirector',
+      category: 'Web Service & REST API Integration',
+      type: 'Python / Flask Web Application',
+      status: 'Completed Working Prototype',
+      image: '/src/assets/images/github_finder_preview_1791095185235.jpg',
+      shortDescription:
+        'An interactive web tool engineered with Python, Flask, and RESTful web service architecture to verify candidate GitHub usernames against the official REST API and prevent broken 404 redirections.',
+      problem:
+        'Broken navigation and dead-end 404 errors caused by mistyped, expired, or non-existent GitHub user handles. Users waste time landing on missing pages without diagnostic feedback.',
+      personallyBuilt: [
+        "Architected Python Flask backend communicating synchronously with GitHub's official Public REST API via HTTP GET requests",
+        'Implemented pre-navigation username verification to guarantee that users are only redirected to legitimate, active accounts',
+        'Designed defensive error-handling logic returning structured, context-sensitive diagnostic guidance when handles are missing or malformed',
+        'Engineered responsive web search interface with real-time status feedback, preventing page crash on invalid input',
+        'Configured RESTful routing, input sanitization, and graceful GitHub API rate-limit handling'
+      ],
+      techStack: ['Python 3.x', 'Flask', 'RESTful APIs', 'GitHub Public API', 'Requests', 'HTML5', 'CSS3', 'JavaScript', 'Git'],
+      architecture: {
+        steps: [
+          { title: 'User Interface', desc: 'Candidate username search input', status: 'completed' },
+          { title: 'Flask Route (/find_user)', desc: 'Input sanitization & parameter verification', status: 'completed' },
+          { title: 'GitHub Public REST API', desc: 'GET https://api.github.com/users/{username}', status: 'completed' },
+          { title: 'Response Diagnostic Engine', desc: 'HTTP status validation (200 OK vs 404/403)', status: 'completed' },
+          { title: 'Safe Redirect / Diagnostic', desc: 'Authorized redirect or structured in-app guidance', status: 'completed' }
+        ]
+      },
+      limitations:
+        'Scope Notice: Fully functional working web service prototype. Operates in accordance with GitHub Public REST API rate limits (60 unauthenticated requests/hour).',
+      githubUrl: 'https://github.com/Mehak1384/GitHub-Username-Finder-and-Redirector',
+      futureScope: [
+        'GitHub Personal Access Token (PAT) integration to scale rate limits to 5,000 req/hr',
+        'Live repository showcase and pinned contributions preview card',
+        'Recent search history caching with Redis session storage'
+      ],
+      sampleCodeOrQuery: {
+        language: 'python',
+        filename: 'app.py',
+        code: `# GitHub Username Finder & Redirector - Core Flask Route
+import requests
+from flask import Flask, render_template, request, redirect
+
+app = Flask(__name__)
+GITHUB_API_BASE = "https://api.github.com/users"
+
+@app.route('/find_user', methods=['POST'])
+def find_user():
+    username = request.form.get('username', '').strip()
+    if not username:
+        return render_template('index.html', error="Please enter a valid GitHub handle.")
+    
+    # Pre-validation against GitHub Public REST API
+    api_url = f"{GITHUB_API_BASE}/{username}"
+    headers = {
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "GitHub-Finder-App"
+    }
+    
+    try:
+        response = requests.get(api_url, headers=headers, timeout=5)
+        if response.status_code == 200:
+            user_data = response.json()
+            # Verified active account -> safe redirection
+            return redirect(user_data.get('html_url', f"https://github.com/{username}"))
+        elif response.status_code == 404:
+            return render_template('index.html', error=f"Username '{username}' does not exist on GitHub.")
+        elif response.status_code == 403:
+            return render_template('index.html', error="GitHub API rate limit reached. Try again shortly.")
+        else:
+            return render_template('index.html', error=f"GitHub API returned status code {response.status_code}.")
+    except requests.exceptions.RequestException:
+        return render_template('index.html', error="Network connectivity failure. Unable to reach GitHub API.")`
+      }
     }
   ] as Project[],
 

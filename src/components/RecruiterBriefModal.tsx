@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, CheckCircle2, Download, ExternalLink, Mail, Github, Linkedin, ShieldCheck, Terminal, HeartPulse } from 'lucide-react';
+import { X, CheckCircle2, Download, ExternalLink, Mail, Github, Linkedin, ShieldCheck, Terminal, HeartPulse, Globe } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 interface RecruiterBriefModalProps {
@@ -111,6 +111,19 @@ export const RecruiterBriefModal: React.FC<RecruiterBriefModalProps> = ({
                   </div>
                   <p className="text-xs text-slate-600 mt-0.5">
                     Python + PostgreSQL console-based system with bcrypt authentication, customer catalog, menu records, order calculation, and revenue transaction reporting. (Note: Strictly console application, not web/cloud).
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 bg-emerald-50/50 p-3 rounded-lg border border-emerald-100">
+                <Globe className="w-5 h-5 text-emerald-700 mt-0.5 shrink-0" />
+                <div>
+                  <div className="font-semibold text-slate-900">
+                    GitHub Username Finder & Redirector{' '}
+                    <span className="text-xs font-normal text-emerald-700">· Completed Working Prototype</span>
+                  </div>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    Python + Flask web tool leveraging GitHub REST API to validate usernames before redirection, preventing dead-end 404 screens and delivering structured diagnostic guidance.
                   </p>
                 </div>
               </div>

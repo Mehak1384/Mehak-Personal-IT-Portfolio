@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PORTFOLIO_DATA, Project, RoadmapProject } from '../data/portfolioData';
 import { ConsoleSimulatorModal } from './ConsoleSimulatorModal';
 import { MediAIModal } from './MediAIModal';
+import { GitHubFinderModal } from './GitHubFinderModal';
 import {
   ExternalLink,
   Terminal,
@@ -15,11 +16,14 @@ import {
   Layers,
   Sparkles,
   GitBranch,
+  Search,
+  Globe,
 } from 'lucide-react';
 
 export const ProjectsSection: React.FC = () => {
   const [consoleModalOpen, setConsoleModalOpen] = useState(false);
   const [mediAIModalOpen, setMediAIModalOpen] = useState(false);
+  const [githubFinderModalOpen, setGithubFinderModalOpen] = useState(false);
 
   const projects = PORTFOLIO_DATA.projects;
   const roadmap = PORTFOLIO_DATA.futureRoadmap;
@@ -44,6 +48,7 @@ export const ProjectsSection: React.FC = () => {
         <div className="space-y-12 mb-16">
           {projects.map((project, index) => {
             const isSattvik = project.id === 'sattvik-bhojan';
+            const isGitHubFinder = project.id === 'github-username-finder';
 
             return (
               <div
@@ -65,7 +70,7 @@ export const ProjectsSection: React.FC = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
                         <span className="text-xs font-mono text-slate-200">
-                          {isSattvik ? 'CLI + PostgreSQL System' : 'Frontend UI & Architecture Blueprint'}
+                          {isSattvik ? 'CLI + PostgreSQL System' : isGitHubFinder ? 'Python + Flask REST Service' : 'Frontend UI & Architecture Blueprint'}
                         </span>
                       </div>
                     </div>
@@ -104,6 +109,14 @@ export const ProjectsSection: React.FC = () => {
                         >
                           <Terminal className="w-3.5 h-3.5" />
                           <span>Launch Live Console Simulator</span>
+                        </button>
+                      ) : isGitHubFinder ? (
+                        <button
+                          onClick={() => setGithubFinderModalOpen(true)}
+                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-mono font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-md transition-colors shadow-xs"
+                        >
+                          <Search className="w-3.5 h-3.5" />
+                          <span>Test Username Lookup (Live Demo)</span>
                         </button>
                       ) : (
                         <button
@@ -210,6 +223,14 @@ export const ProjectsSection: React.FC = () => {
                             <Terminal className="w-3.5 h-3.5" />
                             <span>Run CLI Simulation</span>
                           </button>
+                        ) : isGitHubFinder ? (
+                          <button
+                            onClick={() => setGithubFinderModalOpen(true)}
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800"
+                          >
+                            <Search className="w-3.5 h-3.5" />
+                            <span>Test Live Search & API</span>
+                          </button>
                         ) : (
                           <button
                             onClick={() => setMediAIModalOpen(true)}
@@ -222,7 +243,7 @@ export const ProjectsSection: React.FC = () => {
                       </div>
 
                       <span className="text-[11px] text-slate-400 font-mono">
-                        PRD Section {isSattvik ? '14' : '13'} Verified
+                        {isSattvik ? 'PRD Section 14 Verified' : isGitHubFinder ? 'REST API Prototype' : 'PRD Section 13 Verified'}
                       </span>
                     </div>
                   </div>
@@ -289,6 +310,10 @@ export const ProjectsSection: React.FC = () => {
       <MediAIModal
         isOpen={mediAIModalOpen}
         onClose={() => setMediAIModalOpen(false)}
+      />
+      <GitHubFinderModal
+        isOpen={githubFinderModalOpen}
+        onClose={() => setGithubFinderModalOpen(false)}
       />
     </section>
   );

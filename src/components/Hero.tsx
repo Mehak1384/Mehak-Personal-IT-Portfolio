@@ -164,7 +164,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onOpenRecruiterBrief }
                     href="#projects"
                     className="font-semibold text-teal-700 hover:text-teal-800 hover:underline"
                   >
-                    Inspect 2 Projects →
+                    Inspect 3 Projects →
                   </a>
                 </div>
               </div>

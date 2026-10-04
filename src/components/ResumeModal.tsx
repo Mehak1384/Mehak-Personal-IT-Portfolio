@@ -45,7 +45,15 @@ PROJECTS
    - Handled transaction-safe order placement and payment state reconciliation.
    Tech Stack: Python 3.x, PostgreSQL, psycopg2, bcrypt, Git, GitHub
 
-2. MediAI — Healthcare Guidance & Report Analysis (In Development)
+2. GitHub Username Finder & Redirector (Completed Working Prototype)
+   Type: Python / Flask Web Application & REST API Service
+   - Built interactive tool validating GitHub usernames against official REST API prior to redirecting.
+   - Eliminated dead-end 404 errors by implementing pre-navigation user account status verification.
+   - Engineered defensive error handling returning structured, context-sensitive diagnostic guidance.
+   - Handled RESTful route dispatching, input sanitization, and rate-limit mitigation.
+   Tech Stack: Python 3.x, Flask, RESTful APIs, GitHub Public API, Requests, HTML/CSS/JS
+
+3. MediAI — Healthcare Guidance & Report Analysis (In Development)
    Type: Healthcare Web Application
    - Designed responsive patient portal wireframes using HTML5, CSS3, and JavaScript.
    - Structured modular Python backend classes for clinical test parameter ingestion and reference bounds evaluation.
@@ -247,6 +255,24 @@ CERTIFICATIONS
                   <li>Developed full CRUD operations and sales reporting calculations via psycopg2 database drivers.</li>
                   <li>Engineered transaction-safe order generation flow linking customer profiles with itemized order details.</li>
                   <li>Built sales reporting and payment reconciliation queries calculating daily revenue and pending balances.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-baseline">
+                  <div className="font-bold text-slate-900 text-xs sm:text-sm">
+                    GitHub Username Finder & Redirector{' '}
+                    <span className="font-normal text-emerald-800 text-xs">
+                      (Completed Working Prototype)
+                    </span>
+                  </div>
+                  <span className="text-xs font-mono text-slate-500">Python · Flask · REST APIs</span>
+                </div>
+                <ul className="list-disc list-inside space-y-1 text-xs text-slate-700 mt-1 pl-1">
+                  <li>Engineered Python/Flask web tool querying GitHub's official REST API to validate usernames before initiating redirections.</li>
+                  <li>Prevented 404 navigation dead ends by validating user handles and maintaining the user in-app on invalid searches.</li>
+                  <li>Implemented defensive error handling with structured, context-sensitive diagnostic guidance for invalid queries and API limits.</li>
+                  <li>Constructed clean RESTful endpoint routes with input sanitization and responsive search status feedback.</li>
                 </ul>
               </div>
 
